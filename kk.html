@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anniversary Login 💖</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .login-box {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        text-align: center;
+        width: 320px;
+    }
+    h2 { color: #000000; margin-bottom: 20px; }
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 10px;
+        outline: none;
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: #ff6f91;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    button:hover { background: #ff3e6c; transform: scale(1.05); }
+</style>
+</head>
+<body>
+
+<div class="login-box">
+    <h2>💑 KK Anniversary Login</h2>
+    <form onsubmit="return checkLogin()">
+        <input type="text" id="username" placeholder="Our Name ❤️" required>
+        <input type="password" id="password" placeholder="Anniversary Date (ddmmyy) 🔒" required>
+        <button type="submit">Enter Love 💖</button>
+    </form>
+</div>
+
+<script>
+function checkLogin(){
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if(user === "kklove" && pass === "952026" ){
+        alert("Successful login ❤️");
+        // Redirect to anniversary wishes page
+        window.location.href = "page.html";
+        return false; 
+    } else {
+        alert("Wrong Love Details 💔");
+        return false;
+    }
+}
+</script>
+
+</body>
+</html>

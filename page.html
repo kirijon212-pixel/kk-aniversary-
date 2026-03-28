@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Love Anniversary Quiz</title>
+
+<style>
+body {
+    background-color: #ffc3cc;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 380px;
+}
+
+.option-btn {
+    background: #f06292;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.option-btn:hover {
+    background: #ad1457;
+}
+
+#photo-q {
+    width: 100%;
+    border-radius: 10px;
+    display: none;
+    margin-bottom: 15px;
+}
+
+.progress {
+    font-size: 12px;
+    color: #888;
+}
+
+h2 {
+    color: #880e4f;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="quiz-box">
+    <div class="progress" id="progress-text"></div>
+    <img src="DSC_0077 copy.jpg" id="photo-q">
+    <h2 id="question"></h2>
+    <div id="options"></div>
+</div>
+
+<script>
+const questions = [
+    { q: "What’s my favorite part of your body?", a: ["Your Eyes", "Your Teeth", "Everything!"], correct: 0 },
+    { q: "Where was our very first date?", a: ["Jaffna", "Vavuniya", "Anuradhapuram"], correct: 1 },
+    { q: "What is our most-used nickname?", a: ["Darling", "Clm", "Padduuu"], correct: 2 },
+    { q: "What is Our Favorite Movie?", a: ["Hi Nanna", "kudumpastan", "Dude"], correct: 0 },
+    { q: "FINAL LEVEL: Where was this photo taken?", a: ["Sigiriya", "Sripada", "Colombo"], correct: 0 }
+];
+
+let currentStep = 0;
+
+function loadQuestion() {
+    const qData = questions[currentStep];
+
+    document.getElementById("progress-text").innerText = `Level ${currentStep + 1} of 5`;
+    document.getElementById("question").innerText = qData.q;
+
+    if (currentStep === 4) {
+        document.getElementById("photo-q").style.display = "block";
+    }
+
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+
+    qData.a.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerText = option;
+        btn.onclick = () => checkAnswer(index);
+        optionsDiv.appendChild(btn);
+    });
+}
+
+function checkAnswer(selectedIndex) {
+    if (selectedIndex === questions[currentStep].correct) {
+        currentStep++;
+
+        if (currentStep < questions.length) {
+            loadQuestion();
+        } else {
+            showFinalButton();
+        }
+
+    } else {
+        alert("Oops! Try again my love ❤️");
+    }
+}
+
+function showFinalButton() {
+    document.getElementById("quiz-box").innerHTML = `
+        <h2>💖 You Completed the Quiz 💖</h2>
+        <p>One more surprise waiting for you...</p>
+
+        <button onclick="goToNextPage()" style="
+            margin-top:20px;
+            padding:15px;
+            background:#f06292;
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-size:18px;
+            cursor:pointer;
+        ">
+            Click Me My Love 💕
+        </button>
+    `;
+}
+
+function goToNextPage() {
+    window.location.href = "clebration.html";
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
